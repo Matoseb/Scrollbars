@@ -1,0 +1,622 @@
+.scroll {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+    display: flex;
+    flex-direction: column;
+    -webkit-user-select: none;
+    /*backface-visibility: hidden;*/
+    /*-webkit-backface-visibility: hidden;*/
+    overflow: hidden;
+    box-sizing: border-box;
+    user-select: none;
+    z-index: 1;
+    flex-grow: 0;
+    transform: translateY(50%) scale(2);
+}
+
+._trk {
+    position: relative;
+    flex: 1 0 auto;
+    width: 100%;
+    height: 0;
+    flex-direction: column;
+    display: flex
+}
+
+.prg {
+    flex: 0.5 0 auto;
+}
+
+.thb {
+    height: 50%
+}
+
+/*Windows 3.0*/
+
+.w3.scroll {
+    background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2' viewBox='0 0 2 2' fill='silver'%3E%3Crect width='1' height='1' /%3E%3Crect x='1' y='1' width='1' height='1' /%3E%3C/svg%3E") 100% 0;
+    width: 17px;
+}
+
+.w3>._trk {
+    margin: -1px 0 -1px 0;
+}
+
+.w3 .thb {
+    position: relative;
+    width: 17px;
+    height: 17px;
+    opacity: 1;
+}
+
+.w3 .thb::after,
+.w3>._arr {
+    background: silver no-repeat -6px 5px;
+    box-shadow:
+        inset 0 0 0 1px black,
+        inset -2px -2px grey,
+        inset 2px 2px white,
+        inset -3px -3px grey;
+}
+
+.w3 .thb:active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2' viewBox='0 0 2 2'%3E%3Crect fill='black' x='1' y='1' width='1' height='1' /%3E%3Crect fill='black' x='0' y='0' width='1' height='1' /%3E%3C/svg%3E");
+    background-position-y: var(--b, 0);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='17px' height='17px' viewBox='0 0 17 17'%3E%3Cpath d='M0,0v17h17V0H0z M16,16H1V1h15V16z'/%3E%3C/svg%3E%0A");
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='17px' height='17px' viewBox='0 0 17 17'%3E%3Cpath d='M0,0v17h17V0H0z M16,16H1V1h15V16z'/%3E%3C/svg%3E%0A");
+}
+
+.w3 .thb::after {
+    content: '';
+    left: 0;
+    height: 100%;
+    position: absolute;
+    top: var(--p, 0);
+    width: 100%;
+    z-index: -1
+}
+
+.w3>._arr {
+    background-image: url("src/w3.png");
+    height: 17px;
+    width: 17px
+}
+
+.w3>.top {
+    background-position: 5px 4px
+}
+
+.w3>._arr:active {
+    background-position: -5px 6px;
+    box-shadow:
+        inset 0 0 0 1px black,
+        inset 2px 2px 0 0 grey
+}
+
+.w3>.top:active {
+    background-position: 6px 5px
+}
+
+
+/*Windows 95*/
+
+.w95>._trk {
+    background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2' viewBox='0 0 2 2' fill='silver' %3E%3Crect width='1' height='1' /%3E%3Crect x='1' y='1' width='1' height='1' /%3E%3C/svg%3E");
+    position: relative
+}
+
+.w95 .thb {
+    background: silver;
+    width: 16px;
+    min-height: 8px
+}
+
+.w95 .thb,
+.w95>._arr {
+    box-shadow:
+        inset -1px -1px black,
+        inset 1px 1px silver,
+        inset -2px -2px gray,
+        inset 2px 2px white;
+}
+
+.w95>._arr {
+    background: silver url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' shape-rendering='optimizeSpeed' x='0px' y='0px' width='16px' height='16px' viewBox='0 0 16 16'%3E%3Cpolygon points='4,7 4,6 11,6 11,7 10,7 10,8 9,8 9,9 8,9 8,10 7,10 7,9 6,9 6,8 5,8 5,7'/%3E%3C/svg%3E");
+    width: 16px;
+    position: relative;
+    height: 16px;
+    z-index: 2
+}
+
+.w95>.top {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' shape-rendering='optimizeSpeed' x='0px' y='0px' width='16px' height='16px' viewBox='0 0 16 16'%3E%3Cpolygon points='11,9 11,10 4,10 4,9 5,9 5,8 6,8 6,7 7,7 7,6 8,6 8,7 9,7 9,8 10,8 10,9'/%3E%3C/svg%3E");
+}
+
+.w95>._arr:active {
+    background-position: 1px 1px;
+    box-shadow: inset 0 0 0 1px gray
+}
+
+/*windows XP*/
+.xp.scroll {
+    background: url(src/xp.svg);
+}
+
+.xp .thb {
+    background:
+        url(src/xp.svg) repeat-x -118px 0,
+        url(src/xp.svg) repeat-x -169px 100%,
+        url(src/xp.svg) repeat-x -220px 50%,
+        url(src/xp.svg) -16px 0;
+    min-height: 7px;
+    width: 17px
+}
+
+.xp .thb:hover {
+    background-position-x: -135px, -186px, -232px, -33px
+}
+
+.xp .thb:active {
+    background-position-x: -152px, -203px, -244px, -50px
+}
+
+.xp>._arr {
+    background: url(src/xp.svg) no-repeat -257px 6px, url(src/xp.svg) -67px 0;
+    height: 17px;
+    width: 17px
+}
+
+.xp>.top {
+    background-position-y: -6px, 0
+}
+
+.xp>._arr:hover {
+    background-position-x: -257px, -84px
+}
+
+.xp>._arr:active {
+    background-position-x: -257px, -101px
+}
+
+/*Windows XP, Luna Silver theme*/
+
+.xps.scroll {
+    background: url(src/xps.svg);
+}
+
+.xps .thb {
+    background:
+        url(src/xps.svg) repeat-x -119px 0,
+        url(src/xps.svg) repeat-x -170px 100%,
+        url(src/xps.svg) repeat-x -221px 50%,
+        url(src/xps.svg) -17px 0;
+    width: 17px;
+    min-height: 7px
+}
+
+.xps .thb:hover {
+    background-position-x: -136px, -187px, -233px, -34px
+}
+
+.xps .thb:active {
+    background-position-x: -153px, -204px, -245px, -51px
+}
+
+.xps>._arr {
+    background: url(src/xps.svg) no-repeat -258px 6px, url(src/xps.svg) -68px 0;
+    height: 17px;
+    width: 17px
+}
+
+.xps>.top {
+    background-position-y: -6px, 0
+}
+
+.xps>._arr:hover {
+    background-position-x: -258px, -85px
+}
+
+.xps>._arr:active {
+    background-position-x: -271px, -102px
+}
+
+/*vista*/
+
+.vista.scroll {
+    background:
+        url(src/vista.svg) no-repeat -252px -6px,
+        url(src/vista.svg) no-repeat -252px calc(100% + 7px),
+        url(src/vista.svg) -48px;
+    padding: 1px 0 1px 0
+}
+
+.vista>._trk {
+    position: relative;
+    z-index: 1
+}
+
+.vista .thb {
+    position: relative;
+    background: url(src/vista.svg) repeat-x -65px 0,
+        url(src/vista.svg) repeat-x -81px 100%,
+        url(src/vista.svg) repeat-x -161px 50%,
+        url(src/vista.svg) repeat-y 1px;
+    width: 17px;
+}
+
+.vista .thb::after {
+    content: '';
+    position: absolute;
+    width: 17px;
+    height: 100%;
+    opacity: 0;
+    transition: 0.4s opacity;
+    background: inherit;
+    background-position-x: -97px, -113px, -174px, -15px;
+}
+
+.vista .thb:hover::after {
+    opacity: 1;
+}
+
+.vista .thb:active::after {
+    opacity: 1;
+    transition-duration: 0s;
+    background-position-x: -129px, -145px, -187px, -31px;
+}
+
+.vista>._arr {
+    background: url(src/vista.svg) no-repeat -252px 6px, url(src/vista.svg) no-repeat -203px -1px;
+    opacity: 0;
+    width: 17px;
+    position: relative;
+    transition: 0.4s opacity;
+    height: 16px;
+}
+
+.vista:hover ._arr,
+.vista:active ._arr,
+.vista>._arr:hover::after {
+    opacity: 1;
+}
+
+.vista>.top {
+    background-position-y: -7px, -1px;
+}
+
+.vista>._arr::after {
+    background: inherit;
+    background-position-x: -265px, -219px;
+    content: '';
+    height: 16px;
+    opacity: 0;
+    position: absolute;
+    transition: inherit;
+    width: 17px;
+}
+
+.vista>._arr:active::after {
+    background-position-x: -278px, -235px;
+    opacity: 1;
+    transition-duration: 0s;
+}
+
+/*Windows 10*/
+.w10.scroll {
+    background: #F0F0F0;
+    border-right: 1px solid #F0F0F0;
+    border-left: 1px solid white;
+    box-sizing: border-box;
+    width: 17px;
+}
+
+.w10 .thb {
+    background: #CDCDCD;
+    width: 15px;
+    transition: 1s background
+}
+
+.w10 .thb:hover {
+    background: #A6A6A6;
+    transition-duration: 0.5s
+}
+
+.w10 .thb:active {
+    background: #A6A6A6;
+    box-shadow: inset 15px 0 #606060
+}
+
+.w10>._arr {
+    background: none;
+    height: 17px;
+    position: relative;
+    transition: 1s background;
+    width: 15px;
+}
+
+.w10>._arr:hover:active {
+    background: #CDCDCD;
+    box-shadow: inset 15px 0 #606060
+}
+
+.w10>._arr:hover:not(:active) {
+    background: #CDCDCD;
+    transition-duration: 0.5s
+}
+
+.w10>._arr::after {
+    background: #606060;
+    content: "";
+    height: 17px;
+    mask: url(src/w10.svg);
+    position: absolute;
+    width: 15px;
+    -webkit-mask: url(src/w10.svg)
+}
+
+.w10>.top::after {
+    transform: rotate(180deg)
+}
+
+.w10>._arr:hover:active::after {
+    background: white
+}
+
+/*NextStep*/
+
+.ns.scroll {
+    background: #AAAAAA;
+    padding: 1px;
+    width: 18px
+}
+
+.ns>._arr {
+    background: #AAAAAA url(src/ns.png) no-repeat 3px 3px;
+    box-shadow:
+        inset -1px -1px black,
+        inset 1px 1px white,
+        inset -2px -2px #555555;
+    height: 16px;
+    width: 16px
+}
+
+.ns>.top {
+    background-position-x: -8px;
+    margin: 1px 0 1px 0
+}
+
+.ns>._trk {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='2' height='2' viewBox='0 0 2 2' fill='%23555555'%3E%3Crect width='1' height='1' /%3E%3Crect x='1' y='1' width='1' height='1' /%3E%3C/svg%3E");
+    order: -1
+}
+
+.ns>._arr:active {
+    background-color: white;
+    box-shadow:
+        inset -1px -1px #555555,
+        inset 1px 1px white,
+        inset -2px -2px #AAAAAA,
+        inset 0 0 0 8px rgba(255, 255, 255, 0.335)
+}
+
+.ns .thb {
+    background: #AAAAAA url(src/ns.png) no-repeat -19px 50%;
+    box-shadow:
+        inset -1px -1px black,
+        inset 1px 1px white,
+        inset -2px -2px #555555;
+    min-height: 16px;
+    width: 16px
+}
+
+/*Mac OS 7, pre*/
+
+.mac7.scroll {
+    width: 16px;
+    background: #DDDDDD;
+    position: relative
+}
+
+.mac7>._trk {
+    background: url("src/mac7b.svg") 0 1px;
+    box-shadow:
+        inset 1px 0 black,
+        inset -1px 0 black;
+}
+
+.mac7 .thb {
+    height: 16px;
+    margin-left: 1px;
+    position: relative;
+    width: 14px;
+}
+
+.mac7 .thb::before,
+.mac7 .thb::after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    box-shadow:
+        inset 0 0 0 1px black;
+}
+
+.mac7 .thb::after {
+    background: #AAAAAA url(src/mac7a.svg) 4px 50%;
+    box-shadow:
+        inset 0 1px #555555,
+        inset -1px -1px #333366,
+        inset 1px 2px #CCCCFF;
+    top: var(--p, 0);
+    z-index: 1
+}
+
+.mac7>._arr {
+    background: #DDDDDD url(src/mac7a.svg) no-repeat 2px -23px;
+    box-shadow: inset 0 0 0 1px black,
+        inset -2px -2px #777777,
+        inset 2px 2px #FFFFFF;
+    height: 16px;
+    position: relative;
+    width: 16px;
+    z-index: 2
+}
+
+.mac7>.top {
+    background-position-y: 3px
+}
+
+.mac7>._arr:active {
+    background-position-x: -10px
+}
+
+/*Mac OS 8-9*/
+
+.mac8>._trk,
+.mac9>._trk {
+    background: #aaaaaa;
+    order: -1;
+    width: 16px;
+    box-shadow:
+        inset 0 0 0 1px black,
+        inset -2px 0 #CCCCCC,
+        inset 2px 2px #777777,
+        inset -3px 0 #BBBBBB,
+        inset 3px 3px #888888
+}
+
+.mac8 .thb,
+.mac9 .thb {
+    background: url(src/mac8-9_.svg) no-repeat -8px 50%,
+        url(src/mac8-9_.svg) repeat-x -98px -14px,
+        url(src/mac8-9_.svg) repeat-x -113px 100%,
+        url(src/mac8-9.svg) -23px;
+
+    box-shadow:
+        0 3px 0 -2px #777777,
+        0 5px 0 -3px #888888;
+    width: 16px;
+
+    min-height: 16px
+}
+
+.mac8 .thb {
+    height: 16px;
+}
+
+.mac8 .thb:active,
+.mac9 .thb:active {
+    background-position-x: 4px, -128px, -83px, -38px
+}
+
+.mac8>._arr,
+.mac9>._arr {
+    background: url(src/mac8-9_.svg) no-repeat -98px 1px, url(src/mac8-9_.svg) -53px 0;
+    height: 16px;
+    width: 16px;
+    z-index: 3
+}
+
+.mac8>.top,
+.mac9>.top {
+    background-position-x: -128px, -53px;
+    margin: -1px 0 -1px 0;
+}
+
+.mac8>._arr:active,
+.mac9>._arr:active {
+    background-position-x: -98px, -68px
+}
+
+.mac8>.top:active,
+.mac9>.top:active {
+    background-position-x: -128px, -68px
+}
+
+/*Mac OS X 10.0 Cheetah*/
+.mac10.scroll {
+    background: url(src/mac10a.svg) repeat-x -15px 100%, url(src/mac10a.svg) repeat-x -30px 0, url(src/mac10a.svg);
+}
+
+.mac10>._arr {
+    width: 15px;
+    height: 24px;
+    background: url(src/mac10a.svg) repeat-y -15px 100%;
+}
+
+.mac10>.top {
+    background-position: -30px 0;
+}
+
+.mac10>._arr:active {
+    background-position-x: -45px;
+}
+
+.mac10>._trk {
+    margin: -9px 0 -9px 0;
+}
+
+.mac10 .thb {
+    height: 34%;
+    width: 15px;
+    border: 0 solid;
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    border-image: url(src/mac10b.png) 10 0;
+    position: relative;
+    background-position: -60px var(--b, 0);
+}
+
+.mac10 .thb::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url(src/mac10a.svg) repeat-y;
+    background-position: inherit;
+}
+
+/*Mac OS X 10.0 Yosemite*/
+.osx10.scroll {
+    width: 16px
+}
+
+.osx10>._arr {
+    display: none;
+}
+
+.osx10>._trk {
+    background: rgba(250, 250, 250, 0.75);
+    box-shadow: inset 2px 0 1px -2px rgba(0, 0, 0, 0.28), inset -1px 0 1px -2px black;
+    padding: 2px 0 2px 3px;
+    box-sizing: border-box;
+}
+
+.osx10 .thb {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 22px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+    width: 11px;
+    opacity: 0;
+    transition: opacity 0.1s 0.25s
+}
+
+.osx10:hover .thb,
+.osx10:active .thb {
+    opacity: 1;
+    transition-delay: 0s
+}
