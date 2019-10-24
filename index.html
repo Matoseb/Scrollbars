@@ -39,22 +39,7 @@
         --color2: lightgray;
         --gap: 0;
         --margin: 20px;
-        font-size: 3.6vw;
-    }
-
-    @media only screen and (min-width: 600px) {
-        :root {
-            font-size: 14pt;
-            --carouselWidth: calc(100% / 3);
-            --gap: var(--carouselWidth);
-        }
-    }
-
-    @media only screen and (min-width: 1100px) {
-        :root {
-            --carouselWidth: 20%;
-            --gap: 40%;
-        }
+        font-size: 12pt;
     }
 
     html,
@@ -63,6 +48,7 @@
         background: var(--background);
         color: var(--color);
         font-family: "Roboto", Helvetica, Arial, sans-serif;
+        line-height: 1.5em;
         height: 100%;
         margin: 0;
         overflow: hidden;
@@ -97,13 +83,13 @@
     }
 
     .title {
-        font-size: 2rem;
+        font-size: 8vw;
         left: 50%;
         pointer-events: auto;
         position: absolute;
         text-decoration: none;
         top: var(--margin);
-        transform: translate(-50%, -20%) scale(0.7);
+        transform: translate(-50%, 0) scale(0.8);
         transition:
             top .75s ease-in-out,
             transform .75s ease-in-out;
@@ -134,17 +120,24 @@
     }
 
     .infos {
+        flex-shrink: 0;
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
         position: relative;
         width: 100%;
     }
 
+    /*
+    .infos span {
+        margin-bottom: .5em;
+    }
+*/
     .carousel_container {
         display: flex;
         height: 100%;
         justify-content: center;
-        margin: calc(var(--margin)*2 + 1rem) 0 calc(var(--margin)*2) 0;
+        margin: calc(var(--margin)*2 + 1rem) 0 var(--margin) 0;
         position: relative;
         scroll-behavior: smooth;
         width: 100%;
@@ -161,6 +154,19 @@
         overflow-x: scroll;
         overflow-y: visible;
         z-index: -1;
+    }
+
+    .lock * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .lock .carousel {
+        overflow-x: hidden;
     }
 
     .carousel .elem {
@@ -199,7 +205,8 @@
         height: 100%;
         left: 0;
         position: absolute;
-        width: 2em;
+        width: 45px;
+        max-width: 20%;
     }
 
     .carousel_container .arrow.right {
@@ -221,7 +228,7 @@
     }
 
     .carousel_container .arrow::after {
-        --diag: 70.7106781187%;
+        --diag: 60%;
         border-top: solid;
         border-left: solid;
         border-color: var(--color);
@@ -244,6 +251,29 @@
     @keyframes flicker {
         50% {
             opacity: 0
+        }
+    }
+
+    @media only screen and (min-width: 600px) {
+        :root {
+            font-size: 14pt;
+            --carouselWidth: calc(100% / 3);
+            --gap: var(--carouselWidth);
+        }
+
+        .infos {
+            flex-direction: row;
+        }
+
+        .title {
+            font-size: 2rem;
+        }
+    }
+
+    @media only screen and (min-width: 1100px) {
+        :root {
+            --carouselWidth: 20%;
+            --gap: 40%;
         }
     }
     </style>
@@ -438,8 +468,8 @@
         <button class="arrow right"></button>
     </section>
     <footer class="infos">
-        <span>Sébastien Matos, <a href="https://www.ecal.ch/en/100/homepage" target="_blank">écal</a> 2019</span>
         <span>See more at <a href="http://infomesh.org/" target="_blank">infomesh.org</a></span>
+        <span>Sébastien Matos, <a href="https://www.ecal.ch/en/100/homepage" target="_blank">écal</a> 2019</span>
     </footer>
     <script>
     'use strict';
@@ -576,10 +606,18 @@
 
     window.addEventListener('load', function() {
 
+        window.addEventListener('_click', function() {
+            document.body.classList.remove('lock');
+        });
+
         checkScrollDisable();
         window.addEventListener('resize', checkScrollDisable, true);
 
-        document.querySelector('.carousel_container').addEventListener('scroll', checkScrollDisable, true);
+        document.querySelector('.carousel_container').addEventListener('scroll', e => {
+
+            checkScrollDisable();
+
+        }, true);
         document.querySelector('.carousel_container').addEventListener('_click', function({ detail: e }) {
 
             if (!e.target.classList.contains('arrow'))
