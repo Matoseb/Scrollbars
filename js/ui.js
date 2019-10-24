@@ -318,9 +318,6 @@ window.addEventListener('load', _ => {
             if (typeof p === 'string' && p.startsWith('_')) {
                 p = '_' + c.className.split('_')[1].split(' ')[0];
 
-                
-                document.body.classList.add('lock');
-
 
                 A[p](c, e);
 
