@@ -138,14 +138,70 @@
 
 }());
 
-const M = { drag: 0, pressed: 0 };
+const M = { drag: 0 };
+
 
 window.addEventListener('load', _ => {
     const A = {
 
-        findSuffix(elem, string) {
-            let reg = new RegExp(string + "\\S\\w*", "i"),
-                res = elem.className.match(reg);
+        singleEvents: new WeakMap(),
+
+        onEvent(dom, ...listener) {
+            let name = listener[0],
+                old = A.singleEvents.get(dom);
+
+            if (!old) {
+                old = {};
+                A.singleEvents.set(dom, old);
+            }
+
+            if (old[name])
+                dom.removeEventListener(...old[name]);
+
+            old[name] = listener;
+
+            dom.addEventListener(...listener);
+        },
+
+        _btn(btn, e) {
+           let sc = btn.parentNode.querySelector('._trk'),
+                s = btn.parentNode.querySelector('.prg'),
+                t = btn.parentNode.querySelector('.thb'),
+                v = s.style.flexGrow;
+
+            v = +v + (t.offsetHeight / sc.offsetHeight) * (btn.classList.contains('top') ? -1 : 1);
+
+            document.addEventListener('mouseup', done);
+            document.addEventListener('touchend', done);
+
+            function done() {
+                A.moveThb(s, v);
+                console.log('hey');
+                document.removeEventListener('mouseup', done);
+                document.removeEventListener('touchend', done);
+            }
+        },
+
+        readOptions(opts, scenar) {
+            let i = opts.length,
+                curr, args;
+
+
+
+            for (; i--;) {
+                [curr, args] = opts[i].split('{');
+
+                if (curr = scenar[curr]) {
+                    if (args)
+                        args = Function('return {' + args)();
+                    curr(args);
+                }
+            }
+        },
+
+        findSuffix(target, string) {
+            let reg = new RegExp(string + "\\S+", "i"),
+                res = target.match(reg);
 
             return !res ? '' : res[0].replace(string, '');
         },
@@ -159,12 +215,12 @@ window.addEventListener('load', _ => {
 
             e.stopPropagation();
 
+
             if (e.touches)
                 e = e.touches[0];
 
             const prg = trk.querySelector('.prg'),
                 thb = trk.querySelector('.thb');
-
 
             let offset = 0;
 
@@ -189,16 +245,11 @@ window.addEventListener('load', _ => {
             function drag(e) {
 
 
-
                 if (e.touches && e.touches.length === 1)
                     e = e.touches[0];
 
-
-
-
-                const mouseY = convertPointFromPageToNode(trk, e.pageX, e.pageY).y;
-
-                v = (mouseY + offset - thb.offsetHeight * 0.5) / (trk.offsetHeight - thb.offsetHeight);
+                const mouseY = convertPointFromPageToNode(trk, e.pageX, e.pageY).y,
+                    v = (mouseY + offset - thb.offsetHeight * 0.5) / (trk.offsetHeight - thb.offsetHeight);
 
                 A.moveThb(prg, v);
                 fixed.update();
@@ -221,11 +272,11 @@ window.addEventListener('load', _ => {
 
         moveThb: function(prg, amt) {
             prg.style.flexGrow = amt < 0 ? 0 : amt > 1 ? 1 : amt;
-            if (M.drag < 0.5) M.drag += 0.1;
+            if (typeof MOUSE !== 'undefined' && MOUSE.drag < 0.5) MOUSE.drag += 0.1;
         },
 
         preview: function(thb, scr) {
-            let y = (scr.dataset.s + '').includes('pre') ? thb.offsetTop : undefined;
+            let y = (scr.dataset.b + '').includes('pre') ? thb.offsetTop : undefined;
 
             this.update = function() {
                 if (y !== undefined) scr.style.setProperty('--p', y - thb.offsetTop + 'px');
@@ -247,35 +298,37 @@ window.addEventListener('load', _ => {
                 if (oh !== undefined) thb.style.setProperty('--b', og + oh - prg.offsetHeight + 'px');
             }
 
-            if ((scr.dataset.s + '').includes('fixed')) {
+            if ((scr.dataset.b + '').includes('fixed')) {
                 oh = prg.offsetHeight;
                 og = parseInt(thb.style.getPropertyValue('--b'));
             }
         },
 
-        _arr(btn) {
-            let O = [300, 50, undefined]; //delay, clock, amt
+        _arr(btn, event) {
 
-            if (btn.parentElement.dataset.b) {
-                let a = btn.parentElement.dataset.b.split(' ');
-                for (let i = a.length; i--;) {
-                    O[i] = +a[i];
-                }
+            let O = { delay: 300, clock: 50, amt: undefined }, //delay, clock, amt
+                opts = A.findSuffix(btn.parentElement.dataset.b, '_arr');
+
+
+
+            if (opts) {
+                opts = Function('return ' + opts)();
             }
 
-            let f = (d = O[1], firstTime) => {
+            Object.assign(O, opts);
 
+            let f = (d = O.clock, firstTime) => {
                 if (firstTime || btn.matches(':active')) {
-                    A.setScroll(btn, O[2]), A.clock = setTimeout(f, d);
+                    A.setScroll(btn, O.amt), A.clock = setTimeout(f, d);
                 }
-
             };
 
             clearTimeout(A.clock);
-            f(O[0], true); //settimeout bug fix firefox
+            f(O.delay, true); //settimeout bug fix firefox
         },
 
         setScroll(e, amt) {
+            // let ss = e.parentNode.querySelectorAll('._trk.s .prg'),
             let s = e.parentNode.querySelector('.prg'),
                 sc = e.parentNode.querySelector('._trk'),
                 v = s.style.flexGrow;
@@ -288,22 +341,32 @@ window.addEventListener('load', _ => {
 
             A.moveThb(s, v);
             fixed.update();
-
             fixed = '';
 
-        }
+            // for (var i = ss.length; i--;)
+            //     A.$thumb(ss[i]);
+        },
+
+        // $thumb() {}
     }
 
     document.addEventListener('touchstart', e => {
 
-        //disable long press (right click ) on mobile
+        //disable long press (right click) on mobile
+
+        if (e.touches.length > 1)
+            return;
+
+        let found = mouseDown_capture(e);
+
+        e.target.oncontextmenu = null;
+
+        if (!found)
+            return;
         e.target.oncontextmenu = function(e) {
             this.oncontextmenu = null;
             e.preventDefault();
         }
-
-        if (e.touches.length === 1)
-            mouseDown_capture(e);
 
     }, true);
 
@@ -318,13 +381,16 @@ window.addEventListener('load', _ => {
             if (typeof p === 'string' && p.startsWith('_')) {
                 p = '_' + c.className.split('_')[1].split(' ')[0];
 
+                // if(typeof A[p] !== 'undefined')
 
                 A[p](c, e);
 
-                break;
+                return true;
             }
             c = c.parentNode;
         }
+
+        return false;
     }
 
     document.addEventListener('mousedown', mouseDown_capture, true);

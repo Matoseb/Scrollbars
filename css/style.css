@@ -15,7 +15,7 @@
     z-index: 1;
     transform: translateY(50%) scale(2);
     height: 0;
-    transition: height .75s cubic-bezier(.67,.06,.53,.98);
+    transition: height .75s cubic-bezier(.67, .06, .53, .98);
     opacity: 0;
 }
 
@@ -491,7 +491,7 @@
 }
 
 .lisa>._trk {
-    background: url(src/lisa-mac1b.svg) 0 1px;
+    background: url(src/dotted_bg.svg) 0 1px;
     box-shadow:
         inset 1px 0 black,
         inset -1px 0 black;
@@ -519,9 +519,9 @@
 
 .lisa .thb::before {
     mix-blend-mode: difference;
-    background-image: url(src/lisa-mac1b.svg), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='16'%3E%3Crect fill='%23fff' width='100%' height='100%'/%3E%3C/svg%3E");
+    background-image: url(src/dotted_bg.svg), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='16'%3E%3Crect fill='%23fff' width='100%' height='100%'/%3E%3C/svg%3E");
     background-repeat: repeat, no-repeat;
-    background-position: 1px var(--b, 0) ,0 var(--p, 0);
+    background-position: 1px var(--b, 0), 0 var(--p, 0);
     background-color: black;
     mask: 0 0 no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='16'%3E%3Cpath d='M0 0v16h22V0H0zm21 15H1V1h20v14z'/%3E%3C/svg%3E");
     -webkit-mask: 0 0 no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='16'%3E%3Cpath d='M0 0v16h22V0H0zm21 15H1V1h20v14z'/%3E%3C/svg%3E");
@@ -564,7 +564,7 @@
 }
 
 .mac1>._trk {
-    background: url(src/lisa-mac1b.svg) 0 1px;
+    background: url(src/dotted_bg.svg) 0 1px;
     box-shadow:
         inset 1px 0 black,
         inset -1px 0 black;
@@ -591,9 +591,9 @@
 
 .mac1 .thb::before {
     mix-blend-mode: difference;
-    background-image: url(src/lisa-mac1b.svg), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='16'%3E%3Cpath fill='%23fff' d='M0 0h14v16H0z'/%3E%3C/svg%3E");
+    background-image: url(src/dotted_bg.svg), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='16'%3E%3Cpath fill='%23fff' d='M0 0h14v16H0z'/%3E%3C/svg%3E");
     background-repeat: repeat, no-repeat;
-    background-position: 1px var(--b, 0) ,0 var(--p, 0);
+    background-position: 1px var(--b, 0), 0 var(--p, 0);
     background-color: black;
     mask: 0 0 no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='16'%3E%3Cpath d='M0 0v16h14V0H0zm13 15H1V1h12v14z'/%3E%3C/svg%3E");
     -webkit-mask: 0 0 no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='16'%3E%3Cpath d='M0 0v16h14V0H0zm13 15H1V1h12v14z'/%3E%3C/svg%3E");
@@ -825,4 +825,69 @@
 .osx10:active .thb {
     opacity: 1;
     transition-delay: 0s
+}
+
+/*Xerox Star Workstation*/
+
+.xerox.scroll {
+    width: 12px;
+    background: white;
+    position: relative;
+    box-shadow: inset 0 0 0 1px black;
+}
+
+.xerox>._trk {
+    margin: -1px 0 -1px 0;
+}
+
+.xerox .thb {
+    height: 30%;
+    left: 0;
+    position: relative;
+    width: 100%;
+}
+
+.xerox .thb::after {
+    background: url(src/dotted_bg.svg) 1px;
+    position: absolute;
+    content: '';
+    top: var(--p, 0);
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 0 1px black;
+}
+
+.xerox>._arr {
+    background: white url("src/xerox.svg") no-repeat 3px -5px;
+    box-shadow: inset 0 0 0 1px black;
+    height: 36px;
+    position: relative;
+    width: 100%;
+    z-index: 2
+}
+
+.xerox>._btn {
+    background: white url("src/xerox.svg") no-repeat 3px 6px;
+    box-shadow: inset 0 0 0 1px black;
+    height: 18px;
+    margin: 0 0 -1px 0;
+    position: relative;
+    width: 100%;
+    z-index: 2
+}
+
+.xerox>._btn.top {
+    background-position-y: -33px;
+    margin: -1px 0 0 0;
+}
+
+.xerox>._arr.top {
+    background-position-y: -6px;
+    transform: rotate(180deg);
+}
+
+.xerox>a:active {
+    box-shadow: inset 0 0 0 1px white;
+    filter: invert(100%);
 }
