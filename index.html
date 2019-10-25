@@ -612,8 +612,8 @@
             },
 
             smoothScrollBy(dom, ...options) {
-                if ('scrollBehavior' in document.documentElement.style) {
 
+                if ('scrollBehavior' in document.documentElement.style) {
                     dom.scrollBy({
                         behavior: 'smooth',
                         left: options[0],
@@ -636,6 +636,8 @@
             }
         }
 
+    let M = {_target:null};
+
 
     window.addEventListener('click', function(e) {
         UTILS.customEvent(e.target, '_click', e);
@@ -644,6 +646,11 @@
     window.addEventListener('touchend', function(e) {
         if (e.touches.length || !e.cancelable)
             return;
+
+        if(M._target === e.target && e.target.href)
+            e.target.click();
+
+        M._target = null;
 
         e.preventDefault();
 
@@ -663,11 +670,14 @@
 
     window.addEventListener('load', function() {
 
-        window.addEventListener('_click', function() {
+        window.addEventListener('_click', function(e) {
+
             document.body.classList.remove('lock');
         }, true);
 
         window.addEventListener('_down', function(e) {
+
+            M._target = e.target;
 
             if (UTILS.matchesParent(e.target, '.scroll')) {
                 UTILS.clearSelection();
