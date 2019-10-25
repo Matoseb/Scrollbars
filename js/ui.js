@@ -138,9 +138,6 @@
 
 }());
 
-const M = { drag: 0 };
-
-
 window.addEventListener('load', _ => {
     const A = {
 
