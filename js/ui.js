@@ -160,20 +160,26 @@ window.addEventListener('load', _ => {
             dom.addEventListener(...listener);
         },
 
-        _btn(btn, e) {
-           let sc = btn.parentNode.querySelector('._trk'),
+        _btn(btn, e, opts) {
+            let sc = btn.parentNode.querySelector('._trk'),
                 s = btn.parentNode.querySelector('.prg'),
                 t = btn.parentNode.querySelector('.thb'),
-                v = s.style.flexGrow;
+                v = parseFloat(s.style.flexGrow);
 
-            v = +v + (t.offsetHeight / sc.offsetHeight) * (btn.classList.contains('top') ? -1 : 1);
+            amt = opts.up || (t.offsetHeight / sc.offsetHeight);
+
+            if (opts.beyond && (v <= 0 || v >= 1)) {
+                let height = Math.max(0, parseFloat(t.offsetHeight) * opts.beyond);
+                t.style.height = height + 'px';
+            }
+
+            v = v + amt * (btn.classList.contains('top') ? -1 : 1);
 
             document.addEventListener('mouseup', done);
             document.addEventListener('touchend', done);
 
             function done() {
                 A.moveThb(s, v);
-                console.log('hey');
                 document.removeEventListener('mouseup', done);
                 document.removeEventListener('touchend', done);
             }
@@ -261,6 +267,8 @@ window.addEventListener('load', _ => {
                 document.removeEventListener('mouseup', done);
                 document.removeEventListener('touchend', done);
 
+                thb.style.removeProperty('height');
+
                 prev.reset();
                 fixed = prev = null;
             }
@@ -305,13 +313,14 @@ window.addEventListener('load', _ => {
             let O = { delay: 300, clock: 50, amt: undefined }, //delay, clock, amt
                 opts = A.findSuffix(btn.parentElement.dataset.b, '_arr');
 
-
-
             if (opts) {
                 opts = Function('return ' + opts)();
             }
 
             Object.assign(O, opts);
+
+            if (opts.up)
+                return this._btn(btn, event, opts);
 
             let f = (d = O.clock, firstTime) => {
                 if (firstTime || btn.matches(':active')) {
