@@ -3,7 +3,7 @@
 
 <head>
     <meta name="google" content="notranslate">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=3">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta charset="utf-8">
     <link rel="shortcut icon" href="rsrc/favicon.ico" type="image/x-icon">
     <meta property="og:title" content="Evolution of the Scrollbar">
@@ -32,8 +32,6 @@
         color: inherit;
     }
 
-
-
     @font-face {
         font-family: "Roboto";
         font-weight: normal;
@@ -51,19 +49,8 @@
     }
 
     ::-webkit-scrollbar {
-        /*z-index: 100;*/
-        /*height: var(--margin);*/
         display: none;
     }
-/*
-    ::-webkit-scrollbar-thumb {
-        box-shadow: inset 0 10px white, inset 0 -9px white;
-        background: var(--color);
-    }
-
-    ::-webkit-scrollbar-thumb:active {
-        background: var(--color2);
-    }*/
 
     html,
     body {
@@ -77,6 +64,7 @@
         overflow: hidden;
         touch-action: manipulation;
         width: 100%;
+        position: fixed;
         -ms-touch-action: manipulation;
     }
 
@@ -252,18 +240,29 @@
     }
 
     .carousel_container .arrow {
-        --diag: 60%;
-        border-top: solid;
-        border-left: solid;
-        border-color: var(--color);
-        border-width: 1px;
-        left: 50%;
+        --diag: 110%;
+        left: 10%;
         height: 0;
         padding-top: var(--diag);
         position: absolute;
         top: 50%;
-        transform: translate(-25%, -50%) rotate(-45deg);
+        transform: translate(-25%, -50%);
         width: var(--diag);
+    }
+
+    .carousel_container .arrow::after {
+        pointer-events: none;
+        content: '';
+        position: absolute;
+        left: 50%;
+        height: 60%;
+        width: 60%;
+        top: 50%;
+        border: 1px solid var(--color);
+        border-right: 0;
+        border-top: 0;
+        border-width: 1px;
+        transform: translate(-25%, -50%) rotate(45deg);
     }
 
     .preload {
@@ -674,10 +673,17 @@
 
     window.addEventListener('touchstart', function(e) {
         if (e.touches.length > 1)
-            return;
+            return e.preventDefault();
 
         UTILS.customEvent(e.target, '_down', e);
-    }, true);
+    }, { passive: false , useCapture: true});
+
+    window.addEventListener('touchmove', function(e) {
+        let ev = e.originalEvent || e;
+        if (ev.scale > 1 || e.touches.length > 1)
+            return e.preventDefault();
+        
+    }, { passive: false , useCapture: true});
 
     window.addEventListener('load', function() {
 

@@ -241,7 +241,6 @@ window.addEventListener('load', _ => {
 
             function drag(e) {
 
-
                 if (e.touches && e.touches.length === 1)
                     e = e.touches[0];
 
