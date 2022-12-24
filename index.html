@@ -1,24 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta name="google" content="notranslate">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta charset="utf-8">
-    <link rel="shortcut icon" href="rsrc/favicon.ico" type="image/x-icon">
-    <meta property="og:title" content="Evolution of the Scrollbar">
-    <meta property="og:description" content="Some iconic scrollbars recreated as faithfully as possible.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/Matoseb/Scrollbars/master/rsrc/screenshot_01.jpg">
-    <meta property="og:url" content="https://scrollbars.matoseb.com">
-    <meta name="twitter:title" content="Evolution of the Scrollbar">
-    <meta name="twitter:description" content="Some iconic scrollbars recreated as faithfully as possible.">
-    <meta name="twitter:image" content=" https://raw.githubusercontent.com/Matoseb/Scrollbars/master/rsrc/screenshot_01.jpg">
-    <meta name="twitter:card" content="screenshot">
-    <link rel="icon" href="rsrc/favicon.ico" type="image/x-icon">
+  <head>
+    <meta name="google" content="notranslate" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="rsrc/favicon.ico" type="image/x-icon" />
+    <meta property="og:title" content="Evolution of the Scrollbar" />
+    <meta
+      property="og:description"
+      content="Some iconic scrollbars recreated as faithfully as possible."
+    />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/Matoseb/Scrollbars/master/rsrc/screenshot_01.jpg"
+    />
+    <meta property="og:url" content="https://scrollbars.matoseb.com" />
+    <meta name="twitter:title" content="Evolution of the Scrollbar" />
+    <meta
+      name="twitter:description"
+      content="Some iconic scrollbars recreated as faithfully as possible."
+    />
+    <meta
+      name="twitter:image"
+      content=" https://raw.githubusercontent.com/Matoseb/Scrollbars/master/rsrc/screenshot_01.jpg"
+    />
+    <meta name="twitter:card" content="screenshot" />
+    <link rel="icon" href="rsrc/favicon.ico" type="image/x-icon" />
     <title>Evolution of the Scrollbar</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-VHEKPEFZNQ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-VHEKPEFZNQ");
+    </script>
+
     <style>
-    /*css reset*/
-    button {
+      /*css reset*/
+      button {
         background-color: transparent;
         border: none;
         color: inherit;
@@ -26,19 +56,19 @@
         font: inherit;
         outline: inherit;
         padding: 0;
-    }
+      }
 
-    a {
+      a {
         color: inherit;
-    }
+      }
 
-    @font-face {
+      @font-face {
         font-family: "Roboto";
         font-weight: normal;
         src: url("css/roboto.woff2") format("woff2");
-    }
+      }
 
-    :root {
+      :root {
         --background: white;
         --carouselWidth: 100%;
         --color: blue;
@@ -46,15 +76,14 @@
         --gap: 0;
         --margin: 20px;
         font-size: 12pt;
-    }
+      }
 
-    ::-webkit-scrollbar {
+      ::-webkit-scrollbar {
         display: none;
-    }
+      }
 
-    html,
-    body {
-
+      html,
+      body {
         background: var(--background);
         color: var(--color);
         font-family: "Roboto", Helvetica, Arial, sans-serif;
@@ -66,17 +95,17 @@
         width: 100%;
         position: fixed;
         -ms-touch-action: manipulation;
-    }
+      }
 
-    body {
+      body {
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         padding: var(--margin);
         -webkit-tap-highlight-color: transparent;
-    }
+      }
 
-    .title_container {
+      .title_container {
         background-color: transparent;
         height: 100%;
         left: 0;
@@ -86,14 +115,14 @@
         transition: background-color 0.25s 0.75s;
         width: 100%;
         z-index: 100;
-    }
+      }
 
-    .title_container.loading {
+      .title_container.loading {
         background-color: var(--background);
         pointer-events: auto;
-    }
+      }
 
-    .title {
+      .title {
         font-size: 8vw;
         left: 50%;
         pointer-events: auto;
@@ -101,61 +130,59 @@
         text-decoration: none;
         top: var(--margin);
         transform: translate(-50%, 0) scale(0.8);
-        transition:
-            top .75s ease-in-out,
-            transform .75s ease-in-out;
+        transition: top 0.75s ease-in-out, transform 0.75s ease-in-out;
         white-space: nowrap;
-    }
+      }
 
-    .loading .title {
+      .loading .title {
         top: 50%;
         transform: translate(-50%, -50%);
-    }
+      }
 
-    .loading .title::after {
-        content: '|';
+      .loading .title::after {
+        content: "|";
         position: absolute;
-        transform: translate(-.1em, -.1em) scale(0.5, 1.2);
-    }
+        transform: translate(-0.1em, -0.1em) scale(0.5, 1.2);
+      }
 
-    .wait .title::after {
+      .wait .title::after {
         animation: flicker 1s steps(1) infinite;
         opacity: 1;
-    }
+      }
 
-    .label {
+      .label {
         text-align: center;
         opacity: 0;
         margin-bottom: var(--margin);
-        transition: opacity .25s .5s;
-    }
+        transition: opacity 0.25s 0.5s;
+      }
 
-    .infos {
+      .infos {
         flex-shrink: 0;
         display: flex;
         justify-content: space-between;
         flex-direction: column;
         position: relative;
         width: 100%;
-    }
+      }
 
-    /*
+      /*
     .infos span {
         margin-bottom: .5em;
     }
 */
-    .carousel_container {
+      .carousel_container {
         display: flex;
         height: 100%;
         justify-content: center;
-        margin: calc(var(--margin)*2 + 1rem) 0 var(--margin) 0;
+        margin: calc(var(--margin) * 2 + 1rem) 0 var(--margin) 0;
         position: relative;
         scroll-behavior: smooth;
         width: 100%;
         z-index: 0;
-    }
+      }
 
-    .carousel {
+      .carousel {
         background: var(--background);
         display: flex;
         flex-grow: 1;
@@ -165,23 +192,22 @@
         overflow-x: scroll;
         overflow-y: visible;
         z-index: -1;
-    }
+      }
 
-    .lock .carousel {
+      .lock .carousel {
         overflow-x: hidden;
-    }
+      }
 
-
-    body.lock * {
+      body.lock * {
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         -khtml-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-    }
+      }
 
-    .carousel .elem {
+      .carousel .elem {
         align-items: center;
         display: flex;
         flex-direction: column;
@@ -191,26 +217,26 @@
         overflow: visible;
         scroll-snap-align: center;
         width: var(--carouselWidth);
-    }
+      }
 
-    .carousel::before,
-    .carousel::after {
-        content: '';
+      .carousel::before,
+      .carousel::after {
+        content: "";
         flex-shrink: 0;
         height: 100%;
         position: relative;
         width: var(--gap);
-    }
+      }
 
-    .carousel .elem>.date {
+      .carousel .elem > .date {
         margin-bottom: var(--margin);
-    }
+      }
 
-    .carousel .elem>div {
+      .carousel .elem > div {
         height: 100%;
-    }
+      }
 
-    .carousel_container .arrow_container {
+      .carousel_container .arrow_container {
         /*--background: white;*/
         background: var(--background);
         box-shadow: 0 0 4vw 5vw var(--background);
@@ -219,27 +245,27 @@
         position: absolute;
         width: 45px;
         max-width: 20%;
-    }
+      }
 
-    .carousel_container .arrow_container.right {
+      .carousel_container .arrow_container.right {
         left: initial;
         right: 0;
         transform: rotate(180deg);
-    }
+      }
 
-    a:hover:active,
-    button:hover:active {
+      a:hover:active,
+      button:hover:active {
         --color: var(--color2);
         color: var(--color2);
-    }
+      }
 
-    [data-disabled*="left"] .arrow_container.left,
-    [data-disabled*="right"] .arrow_container.right {
+      [data-disabled*="left"] .arrow_container.left,
+      [data-disabled*="right"] .arrow_container.right {
         --color: var(--color2);
         pointer-events: none;
-    }
+      }
 
-    .carousel_container .arrow {
+      .carousel_container .arrow {
         --diag: 110%;
         left: 10%;
         height: 0;
@@ -248,11 +274,11 @@
         top: 50%;
         transform: translate(-25%, -50%);
         width: var(--diag);
-    }
+      }
 
-    .carousel_container .arrow::after {
+      .carousel_container .arrow::after {
         pointer-events: none;
-        content: '';
+        content: "";
         position: absolute;
         left: 50%;
         height: 60%;
@@ -263,513 +289,661 @@
         border-top: 0;
         border-width: 1px;
         transform: translate(-25%, -50%) rotate(45deg);
-    }
+      }
 
-    .preload {
+      .preload {
         display: none;
-    }
+      }
 
-    @keyframes flicker {
+      @keyframes flicker {
         50% {
-            opacity: 0
+          opacity: 0;
         }
-    }
+      }
 
-    @media only screen and (min-width: 600px) {
+      @media only screen and (min-width: 600px) {
         :root {
-            font-size: 14pt;
-            --carouselWidth: calc(100% / 3);
-            --gap: var(--carouselWidth);
+          font-size: 14pt;
+          --carouselWidth: calc(100% / 3);
+          --gap: var(--carouselWidth);
         }
 
         .infos {
-            flex-direction: row;
+          flex-direction: row;
         }
 
         .title {
-            font-size: 2rem;
+          font-size: 2rem;
         }
-    }
+      }
 
-    @media only screen and (min-width: 1100px) {
+      @media only screen and (min-width: 1100px) {
         :root {
-            --carouselWidth: 20%;
-            --gap: 40%;
+          --carouselWidth: 20%;
+          --gap: 40%;
         }
-    }
+      }
     </style>
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="none" onload="if(this.media!=='all')this.media='all'">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/style.css"
+      media="none"
+      onload="if(this.media!=='all')this.media='all'"
+    />
     <script type="text/javascript" src="js/ui.js" defer></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="wait loading title_container">
-        <a class="title"> </a>
+      <a class="title"> </a>
     </header>
     <section class="preload">
-        <img src="css/src/xerox.svg" />
-        <img src="css/src/dotted_bg.svg" />
-        <img src="css/src/mac1a.svg" />
-        <img src="css/src/mac8-9_.svg" />
-        <img src="css/src/w10.svg" />
-        <img src="css/src/xp.svg" />
-        <img src="css/src/lisa.svg" />
-        <img src="css/src/mac7a.svg" />
-        <img src="css/src/ns.png" />
-        <img src="css/src/w3.png" />
-        <img src="css/src/xps.svg" />
-        <img src="css/src/mac10a.svg" />
-        <img src="css/src/mac7b.svg" />
-        <img src="css/src/vista.svg" />
-        <img src="css/src/w3.svg" />
-        <img src="css/src/mac10b.png" />
-        <img src="css/src/mac8-9.svg" />
-        <img src="css/src/w1.svg" />
-        <img src="css/src/w95.svg" />
+      <img src="css/src/xerox.svg" />
+      <img src="css/src/dotted_bg.svg" />
+      <img src="css/src/mac1a.svg" />
+      <img src="css/src/mac8-9_.svg" />
+      <img src="css/src/w10.svg" />
+      <img src="css/src/xp.svg" />
+      <img src="css/src/lisa.svg" />
+      <img src="css/src/mac7a.svg" />
+      <img src="css/src/ns.png" />
+      <img src="css/src/w3.png" />
+      <img src="css/src/xps.svg" />
+      <img src="css/src/mac10a.svg" />
+      <img src="css/src/mac7b.svg" />
+      <img src="css/src/vista.svg" />
+      <img src="css/src/w3.svg" />
+      <img src="css/src/mac10b.png" />
+      <img src="css/src/mac8-9.svg" />
+      <img src="css/src/w1.svg" />
+      <img src="css/src/w95.svg" />
     </section>
     <section class="carousel_container">
-        <div class="arrow_container left">
-            <button class="arrow"></button>
-        </div>
-        <div class="carousel">
-            <article class="elem"><span class="label"><a href="https://en.wikipedia.org/wiki/Xerox_Star" target="_blank">Xerox Star</a><br>1981</span>
-                <div>
-                    <div class="xerox scroll" data-b="pre fixed _arr{clock:500}" style="--p:0;">
-                        <a class="_arr top"></a>
-                        <a class="_btn top"></a>
-                        <div class="_trk">
-                            <div class="prg" style="flex-grow:.5;"></div>
-                            <div class="thb" style="--b:0;"></div>
-                        </div>
-                        <a class="_btn"></a>
-                        <a class="_arr"></a>
-                    </div>
-                </div>
-            </article>
-            <article class="elem"><span class="label"><a href="https://en.wikipedia.org/wiki/Apple_Lisa#Lisa_OS" target="_blank">Lisa OS</a><br>1983</span>
-                <div>
-                    <div class="lisa scroll" data-b="pre fixed" style="--p:0;">
-                        <a class="_arr top"></a>
-                        <div class="_trk">
-                            <div class="prg" style="flex-grow:.5;"></div>
-                            <div class="thb" style="--b:0;"></div>
-                        </div>
-                        <a class="_arr"></a>
-                    </div>
-                </div>
-            </article>
-            <article class="elem"><span class="label"><a href="https://en.wikipedia.org/wiki/System_1" target="_blank">System 1</a><br>1984</span>
-                <div>
-                    <div class="mac1 scroll" data-b="pre fixed" style="--p:0;">
-                        <a class="_arr top"></a>
-                        <div class="_trk">
-                            <div class="prg" style="flex-grow:.5;"></div>
-                            <div class="thb" style="--b:0;"></div>
-                        </div>
-                        <a class="_arr"></a>
-                    </div>
-                </div>
-            </article>
-            <article class="elem"><span class="label"><a href="https://en.wikipedia.org/wiki/AmigaOS#AmigaOS_1.0_%E2%80%93_1.4" target="_blank">AmigaOS 1.0</a><br>1985</span>
-                <div>
-                    <div class="amiga1 scroll" data-b="_arr{up:.1,beyond:.97}" style="--p:0;">
-                        <a class="_arr top"></a>
-                        <div class="_trk">
-                            <div class="prg" style="flex-grow:.5;"></div>
-                            <div class="thb" style="--b:0;"></div>
-                        </div>
-                        <a class="_arr"></a>
-                    </div>
-                </div>
-            </article>
-            <article class="elem"><span class="label"><a href="https://en.wikipedia.org/wiki/Windows_1.0" target="_blank">Windows 1.01</a><br>1985</span>
-                <div>
-                    <div class="w1 scroll" data-b="pre fixed" style="--p:0;">
-                        <a class="_arr top"></a>
-                        <div class="_trk">
-                            <div class="prg" style="flex-grow:.5;"></div>
-                            <div class="thb" style="--b:0;"></div>
-                        </div>
-                        <a class="_arr"></a>
-                    </div>
-                </div>
-            </article>
-            <article class="elem"><span class="label"><a href="https://en.wikipedia.org/wiki/NeXTSTEP" target="_blank">NeXTSTEP</a><br>1989</span>
-                <div>
-                    <div class="ns scroll" data-b="" style="--p:0;">
-                        <a class="_arr top"></a>
-                        <div class="_trk">
-                            <div class="prg" style="flex-grow:.5;"></div>
-                            <div class="thb" style="--b:0;"></div>
-                        </div>
-                        <a class="_arr"></a>
-                    </div>
-                </div>
-            </article>
-            <article class="elem"><span class="label"><a href="https://en.wikipedia.org/wiki/Windows_3.0" target="_blank">Windows 3.0</a><br>1990</span>
-                <div>
-                    <div class="w3 scroll" data-b="pre fixed" style="--p:0;">
-                        <a class="_arr top"></a>
-                        <div class="_trk">
-                            <div class="prg" style="flex-grow:.5;"></div>
-                            <div class="thb" style="--b:0;"></div>
-                        </div>
-                        <a class="_arr"></a>
-                    </div>
-                </div>
-            </article>
-            <article class="elem"><span class="label"><a href="https://en.wikipedia.org/wiki/System_7" target="_blank">System 7</a><br>1991</span>
-                <div>
-                    <div class="mac7 scroll" data-b="pre _arr{delay:0}" style="--p:0;">
-                        <a class="_arr top"></a>
-                        <div class="_trk">
-                            <div class="prg" style="flex-grow:.5;"></div>
-                            <div class="thb" style="--b:0;"></div>
-                        </div>
-                        <a class="_arr"></a>
-                    </div>
-                </div>
-            </article>
-            <article class="elem"><span class="label"><a href="https://en.wikipedia.org/wiki/Windows_95" target="_blank">Windows 95</a><br>1995</span>
-                <div>
-                    <div class="w95 scroll" data-b="" style="--p:0;">
-                        <a class="_arr top"></a>
-                        <div class="_trk">
-                            <div class="prg" style="flex-grow:.5;"></div>
-                            <div class="thb" style="--b:0;"></div>
-                        </div>
-                        <a class="_arr"></a>
-                    </div>
-                </div>
-            </article>
-            <article class="elem"><span class="label"><a href="https://en.wikipedia.org/wiki/Mac_OS_8" target="_blank">Mac OS 8</a><br>1997</span>
-                <div>
-                    <div class="mac8 scroll" data-b="" style="--p:0;">
-                        <a class="_arr top"></a>
-                        <div class="_trk">
-                            <div class="prg" style="flex-grow:.5;"></div>
-                            <div class="thb" style="--b:0;"></div>
-                        </div>
-                        <a class="_arr"></a>
-                    </div>
-                </div>
-            </article>
-            <article class="elem"><span class="label"><a href="https://en.wikipedia.org/wiki/Mac_OS_X_10.0" target="_blank">Mac OS X 10.0</a><br>2001</span>
-                <div>
-                    <div class="mac10 scroll" data-b="fixed" style="--p:0;">
-                        <a class="_arr top"></a>
-                        <div class="_trk">
-                            <div class="prg" style="flex-grow:.5;"></div>
-                            <div class="thb" style="--b:0;"></div>
-                        </div>
-                        <a class="_arr"></a>
-                    </div>
-                </div>
-            </article>
-            <article class="elem"><span class="label"><a href="https://en.wikipedia.org/wiki/Windows_XP" target="_blank">Windows XP</a><br>2001</span>
-                <div>
-                    <div class="xp scroll" data-b="" style="--p:0;">
-                        <a class="_arr top"></a>
-                        <div class="_trk">
-                            <div class="prg" style="flex-grow:.5;"></div>
-                            <div class="thb" style="--b:0;"></div>
-                        </div>
-                        <a class="_arr"></a>
-                    </div>
-                </div>
-            </article>
-            <article class="elem"><span class="label"><a href="https://en.wikipedia.org/wiki/Windows_Vista" target="_blank">Windows Vista</a><br>2007</span>
-                <div>
-                    <div class="vista scroll" data-b="" style="--p:0;">
-                        <a class="_arr top"></a>
-                        <div class="_trk">
-                            <div class="prg" style="flex-grow:.5;"></div>
-                            <div class="thb" style="--b:0;"></div>
-                        </div>
-                        <a class="_arr"></a>
-                    </div>
-                </div>
-            </article>
-            <article class="elem"><span class="label"><a href="https://en.wikipedia.org/wiki/Mac_OS_X_Lion" target="_blank">Mac OS X Lion</a><br>2011</span>
-                <div>
-                    <div class="osx10 scroll" data-b="" style="--p:0;">
-                        <a class="_arr top"></a>
-                        <div class="_trk">
-                            <div class="prg" style="flex-grow:.5;"></div>
-                            <div class="thb" style="--b:0;"></div>
-                        </div>
-                        <a class="_arr"></a>
-                    </div>
-                </div>
-            </article>
-            <article class="elem"><span class="label"><a href="https://en.wikipedia.org/wiki/Windows_10" target="_blank">Windows 10</a><br>2015</span>
-                <div>
-                    <div class="w10 scroll" data-b="pre fixed" style="--p:0;">
-                        <a class="_arr top"></a>
-                        <div class="_trk">
-                            <div class="prg" style="flex-grow:.5;"></div>
-                            <div class="thb" style="--b:0;"></div>
-                        </div>
-                        <a class="_arr"></a>
-                    </div>
-                </div>
-            </article>
-        </div>
-        <div class="arrow_container right">
-            <button class="arrow"></button>
-        </div>
+      <div class="arrow_container left">
+        <button class="arrow"></button>
+      </div>
+      <div class="carousel">
+        <article class="elem">
+          <span class="label"
+            ><a href="https://en.wikipedia.org/wiki/Xerox_Star" target="_blank"
+              >Xerox Star</a
+            ><br />1981</span
+          >
+          <div>
+            <div
+              class="xerox scroll"
+              data-b="pre fixed _arr{clock:500}"
+              style="--p: 0"
+            >
+              <a class="_arr top"></a>
+              <a class="_btn top"></a>
+              <div class="_trk">
+                <div class="prg" style="flex-grow: 0.5"></div>
+                <div class="thb" style="--b: 0"></div>
+              </div>
+              <a class="_btn"></a>
+              <a class="_arr"></a>
+            </div>
+          </div>
+        </article>
+        <article class="elem">
+          <span class="label"
+            ><a
+              href="https://en.wikipedia.org/wiki/Apple_Lisa#Lisa_OS"
+              target="_blank"
+              >Lisa OS</a
+            ><br />1983</span
+          >
+          <div>
+            <div class="lisa scroll" data-b="pre fixed" style="--p: 0">
+              <a class="_arr top"></a>
+              <div class="_trk">
+                <div class="prg" style="flex-grow: 0.5"></div>
+                <div class="thb" style="--b: 0"></div>
+              </div>
+              <a class="_arr"></a>
+            </div>
+          </div>
+        </article>
+        <article class="elem">
+          <span class="label"
+            ><a href="https://en.wikipedia.org/wiki/System_1" target="_blank"
+              >System 1</a
+            ><br />1984</span
+          >
+          <div>
+            <div class="mac1 scroll" data-b="pre fixed" style="--p: 0">
+              <a class="_arr top"></a>
+              <div class="_trk">
+                <div class="prg" style="flex-grow: 0.5"></div>
+                <div class="thb" style="--b: 0"></div>
+              </div>
+              <a class="_arr"></a>
+            </div>
+          </div>
+        </article>
+        <article class="elem">
+          <span class="label"
+            ><a
+              href="https://en.wikipedia.org/wiki/AmigaOS#AmigaOS_1.0_%E2%80%93_1.4"
+              target="_blank"
+              >AmigaOS 1.0</a
+            ><br />1985</span
+          >
+          <div>
+            <div
+              class="amiga1 scroll"
+              data-b="_arr{up:.1,beyond:.97}"
+              style="--p: 0"
+            >
+              <a class="_arr top"></a>
+              <div class="_trk">
+                <div class="prg" style="flex-grow: 0.5"></div>
+                <div class="thb" style="--b: 0"></div>
+              </div>
+              <a class="_arr"></a>
+            </div>
+          </div>
+        </article>
+        <article class="elem">
+          <span class="label"
+            ><a href="https://en.wikipedia.org/wiki/Windows_1.0" target="_blank"
+              >Windows 1.01</a
+            ><br />1985</span
+          >
+          <div>
+            <div class="w1 scroll" data-b="pre fixed" style="--p: 0">
+              <a class="_arr top"></a>
+              <div class="_trk">
+                <div class="prg" style="flex-grow: 0.5"></div>
+                <div class="thb" style="--b: 0"></div>
+              </div>
+              <a class="_arr"></a>
+            </div>
+          </div>
+        </article>
+        <article class="elem">
+          <span class="label"
+            ><a href="https://en.wikipedia.org/wiki/NeXTSTEP" target="_blank"
+              >NeXTSTEP</a
+            ><br />1989</span
+          >
+          <div>
+            <div class="ns scroll" data-b="" style="--p: 0">
+              <a class="_arr top"></a>
+              <div class="_trk">
+                <div class="prg" style="flex-grow: 0.5"></div>
+                <div class="thb" style="--b: 0"></div>
+              </div>
+              <a class="_arr"></a>
+            </div>
+          </div>
+        </article>
+        <article class="elem">
+          <span class="label"
+            ><a href="https://en.wikipedia.org/wiki/Windows_3.0" target="_blank"
+              >Windows 3.0</a
+            ><br />1990</span
+          >
+          <div>
+            <div class="w3 scroll" data-b="pre fixed" style="--p: 0">
+              <a class="_arr top"></a>
+              <div class="_trk">
+                <div class="prg" style="flex-grow: 0.5"></div>
+                <div class="thb" style="--b: 0"></div>
+              </div>
+              <a class="_arr"></a>
+            </div>
+          </div>
+        </article>
+        <article class="elem">
+          <span class="label"
+            ><a href="https://en.wikipedia.org/wiki/System_7" target="_blank"
+              >System 7</a
+            ><br />1991</span
+          >
+          <div>
+            <div class="mac7 scroll" data-b="pre _arr{delay:0}" style="--p: 0">
+              <a class="_arr top"></a>
+              <div class="_trk">
+                <div class="prg" style="flex-grow: 0.5"></div>
+                <div class="thb" style="--b: 0"></div>
+              </div>
+              <a class="_arr"></a>
+            </div>
+          </div>
+        </article>
+        <article class="elem">
+          <span class="label"
+            ><a href="https://en.wikipedia.org/wiki/Windows_95" target="_blank"
+              >Windows 95</a
+            ><br />1995</span
+          >
+          <div>
+            <div class="w95 scroll" data-b="" style="--p: 0">
+              <a class="_arr top"></a>
+              <div class="_trk">
+                <div class="prg" style="flex-grow: 0.5"></div>
+                <div class="thb" style="--b: 0"></div>
+              </div>
+              <a class="_arr"></a>
+            </div>
+          </div>
+        </article>
+        <article class="elem">
+          <span class="label"
+            ><a href="https://en.wikipedia.org/wiki/Mac_OS_8" target="_blank"
+              >Mac OS 8</a
+            ><br />1997</span
+          >
+          <div>
+            <div class="mac8 scroll" data-b="" style="--p: 0">
+              <a class="_arr top"></a>
+              <div class="_trk">
+                <div class="prg" style="flex-grow: 0.5"></div>
+                <div class="thb" style="--b: 0"></div>
+              </div>
+              <a class="_arr"></a>
+            </div>
+          </div>
+        </article>
+        <article class="elem">
+          <span class="label"
+            ><a
+              href="https://en.wikipedia.org/wiki/Mac_OS_X_10.0"
+              target="_blank"
+              >Mac OS X 10.0</a
+            ><br />2001</span
+          >
+          <div>
+            <div class="mac10 scroll" data-b="fixed" style="--p: 0">
+              <a class="_arr top"></a>
+              <div class="_trk">
+                <div class="prg" style="flex-grow: 0.5"></div>
+                <div class="thb" style="--b: 0"></div>
+              </div>
+              <a class="_arr"></a>
+            </div>
+          </div>
+        </article>
+        <article class="elem">
+          <span class="label"
+            ><a href="https://en.wikipedia.org/wiki/Windows_XP" target="_blank"
+              >Windows XP</a
+            ><br />2001</span
+          >
+          <div>
+            <div class="xp scroll" data-b="" style="--p: 0">
+              <a class="_arr top"></a>
+              <div class="_trk">
+                <div class="prg" style="flex-grow: 0.5"></div>
+                <div class="thb" style="--b: 0"></div>
+              </div>
+              <a class="_arr"></a>
+            </div>
+          </div>
+        </article>
+        <article class="elem">
+          <span class="label"
+            ><a
+              href="https://en.wikipedia.org/wiki/Windows_Vista"
+              target="_blank"
+              >Windows Vista</a
+            ><br />2007</span
+          >
+          <div>
+            <div class="vista scroll" data-b="" style="--p: 0">
+              <a class="_arr top"></a>
+              <div class="_trk">
+                <div class="prg" style="flex-grow: 0.5"></div>
+                <div class="thb" style="--b: 0"></div>
+              </div>
+              <a class="_arr"></a>
+            </div>
+          </div>
+        </article>
+        <article class="elem">
+          <span class="label"
+            ><a
+              href="https://en.wikipedia.org/wiki/Mac_OS_X_Lion"
+              target="_blank"
+              >Mac OS X Lion</a
+            ><br />2011</span
+          >
+          <div>
+            <div class="osx10 scroll" data-b="" style="--p: 0">
+              <a class="_arr top"></a>
+              <div class="_trk">
+                <div class="prg" style="flex-grow: 0.5"></div>
+                <div class="thb" style="--b: 0"></div>
+              </div>
+              <a class="_arr"></a>
+            </div>
+          </div>
+        </article>
+        <article class="elem">
+          <span class="label"
+            ><a href="https://en.wikipedia.org/wiki/Windows_10" target="_blank"
+              >Windows 10</a
+            ><br />2015</span
+          >
+          <div>
+            <div class="w10 scroll" data-b="pre fixed" style="--p: 0">
+              <a class="_arr top"></a>
+              <div class="_trk">
+                <div class="prg" style="flex-grow: 0.5"></div>
+                <div class="thb" style="--b: 0"></div>
+              </div>
+              <a class="_arr"></a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="arrow_container right">
+        <button class="arrow"></button>
+      </div>
     </section>
     <footer class="infos">
-        <span>See more at <a href="http://infomesh.org/" target="_blank">infomesh.org</a></span>
-        <span><a href="https://github.com/Matoseb/" target="_blank">Sébastien Matos</a>, <a href="https://www.ecal.ch/en/100/homepage" target="_blank">écal</a> 2019</span>
+      <span
+        >See more at
+        <a href="http://infomesh.org/" target="_blank">infomesh.org</a></span
+      >
+      <span
+        ><a href="https://github.com/Matoseb/" target="_blank"
+          >Sébastien Matos</a
+        >,
+        <a href="https://www.ecal.ch/en/100/homepage" target="_blank">écal</a>
+        2019</span
+      >
     </footer>
     <script>
-    'use strict';
+      "use strict";
 
-    let CURRSTATE = 'idle',
+      let CURRSTATE = "idle",
         TIME = performance.now();
 
-    const STATES = ['idle', 'writeTitle', 'animateTitle', 'animateScrollbars'],
-        TITLE = 'Evolution of the Scrollbar',
+      const STATES = [
+          "idle",
+          "writeTitle",
+          "animateTitle",
+          "animateScrollbars",
+        ],
+        TITLE = "Evolution of the Scrollbar",
         METHODS = {
+          async writeTitle() {
+            let nextStep = function () {
+                changeState("animateTitle");
+                window.removeEventListener("_click", nextStep);
+              },
+              domContainer = document.querySelector(".title_container"),
+              domTitle = domContainer.querySelector(".title"),
+              char = 0;
 
-            async writeTitle() {
+            window.addEventListener("_click", nextStep);
 
-                let nextStep = function() {
-                        changeState('animateTitle');
-                        window.removeEventListener('_click', nextStep);
-                    },
-                    domContainer = document.querySelector('.title_container'),
-                    domTitle = domContainer.querySelector('.title'),
-                    char = 0;
+            domTitle.textContent = "";
+            domContainer.classList.remove("wait");
 
-                window.addEventListener('_click', nextStep);
-
-                domTitle.textContent = '';
-                domContainer.classList.remove('wait');
-
-                while (char < TITLE.length) {
-                    if (CURRSTATE !== 'writeTitle')
-                        return;
-                    domTitle.textContent += TITLE[char];
-                    await UTILS.promiseTimeout(UTILS.random(10, 60));
-                    char++;
-                }
-
-                domContainer.classList.add('wait');
-
-                setTimeout(nextStep, 300);
-            },
-
-            animateTitle() {
-                let domContainer = document.querySelector('.title_container'),
-                    domTitle = domContainer.querySelector('.title');
-
-                domTitle.textContent = TITLE;
-                domContainer.classList.remove('loading');
-
-                setTimeout(_ => {
-                    domTitle.href = "";
-                    changeState('animateScrollbars')
-                }, 750);
-            },
-
-            async animateScrollbars() {
-                let elems = document.querySelectorAll('.carousel .elem');
-
-                for (let i = 0; i < elems.length; i++) {
-                    let label = elems[i].querySelector('.label');
-                    let scroll = elems[i].querySelector('.scroll');
-                    scroll.style.height = Math.floor(UTILS.random(40, 50)) + '%';
-                    label.style.opacity = scroll.style.opacity = 1;
-                    await UTILS.promiseTimeout(150);
-                }
+            while (char < TITLE.length) {
+              if (CURRSTATE !== "writeTitle") return;
+              domTitle.textContent += TITLE[char];
+              await UTILS.promiseTimeout(UTILS.random(10, 60));
+              char++;
             }
+
+            domContainer.classList.add("wait");
+
+            setTimeout(nextStep, 300);
+          },
+
+          animateTitle() {
+            let domContainer = document.querySelector(".title_container"),
+              domTitle = domContainer.querySelector(".title");
+
+            domTitle.textContent = TITLE;
+            domContainer.classList.remove("loading");
+
+            setTimeout((_) => {
+              domTitle.href = "";
+              changeState("animateScrollbars");
+            }, 750);
+          },
+
+          async animateScrollbars() {
+            let elems = document.querySelectorAll(".carousel .elem");
+
+            for (let i = 0; i < elems.length; i++) {
+              let label = elems[i].querySelector(".label");
+              let scroll = elems[i].querySelector(".scroll");
+              scroll.style.height = Math.floor(UTILS.random(40, 50)) + "%";
+              label.style.opacity = scroll.style.opacity = 1;
+              await UTILS.promiseTimeout(150);
+            }
+          },
         },
-
         UTILS = {
+          customEvent(node, event, args, bubbles = true) {
+            node.dispatchEvent(
+              new CustomEvent(event, { detail: args, bubbles: bubbles })
+            );
+          },
 
-            customEvent(node, event, args, bubbles = true) {
-                node.dispatchEvent(new CustomEvent(event, { detail: args, bubbles: bubbles }));
-            },
+          clearSelection() {
+            let selection = window.getSelection
+              ? window.getSelection()
+              : document.selection
+              ? document.selection
+              : null;
+            if (!!selection)
+              selection.empty ? selection.empty() : selection.removeAllRanges();
+          },
 
-            clearSelection() {
-                let selection = window.getSelection ? window.getSelection() : document.selection ? document.selection : null;
-                if (!!selection) selection.empty ? selection.empty() : selection.removeAllRanges();
-            },
+          matchesParent(element, selectorString) {
+            if (element.matches && element.matches(selectorString)) return true;
+            return (
+              !!element.parentNode &&
+              this.matchesParent(element.parentNode, selectorString)
+            );
+          },
 
-            matchesParent(element, selectorString) {
-                if (element.matches && element.matches(selectorString)) return true;
-                return !!element.parentNode && this.matchesParent(element.parentNode, selectorString);
-            },
+          promiseTimeout(delay = 0) {
+            return new Promise((resolve) => {
+              setTimeout((_) => resolve(), delay);
+            });
+          },
 
-            promiseTimeout(delay = 0) {
-                return new Promise(resolve => {
-                    setTimeout(_ => resolve(), delay);
-                });
-            },
+          lerp(start, stop, amt) {
+            return amt * (stop - start) + start;
+          },
 
-            lerp(start, stop, amt) {
-                return amt * (stop - start) + start;
-            },
+          random(min, max) {
+            return Math.random() * (max - min) + min;
+          },
 
-            random(min, max) {
-                return Math.random() * (max - min) + min;
-            },
+          easeInOutCubic: function (t) {
+            return t < 0.5
+              ? 4 * t * t * t
+              : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+          },
 
-            easeInOutCubic: function(t) { return t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1 },
+          smoothScrollBy_(dom, options) {
+            const time = Math.min(
+              (performance.now() - options._time) / options.duration,
+              1
+            );
 
-            smoothScrollBy_(dom, options) {
+            ["scrollLeft", "scrollTop"].forEach((key) => {
+              let offset =
+                (options.targ[key] - options.curr[key]) *
+                this.easeInOutCubic(time);
+              dom.dataset[key] = options.targ[key];
+              dom[key] = options.curr[key] + offset;
+            });
 
-                const time = Math.min((performance.now() - options._time) / options.duration, 1);
+            if (time < 1)
+              requestAnimationFrame((_) => this.smoothScrollBy_(dom, options));
+          },
 
-                ['scrollLeft', 'scrollTop'].forEach(key => {
-                    let offset = (options.targ[key] - options.curr[key]) * this.easeInOutCubic(time);
-                    dom.dataset[key] = options.targ[key];
-                    dom[key] = options.curr[key] + offset;
-                });
+          smoothScrollBy(dom, ...options) {
+            if ("scrollBehavior" in document.documentElement.style) {
+              dom.scrollBy({
+                behavior: "smooth",
+                left: options[0],
+                right: options[1],
+              });
+            } else {
+              options.curr = {
+                scrollLeft: dom.scrollLeft,
+                scrollTop: dom.scrollTop,
+              };
+              options.targ = {};
+              options._time = performance.now();
+              options.duration = 300;
 
-                if (time < 1)
-                    requestAnimationFrame(_ => this.smoothScrollBy_(dom, options));
-            },
+              Object.keys(options.curr).forEach((key, i) => {
+                options.targ[key] =
+                  parseFloat(dom.dataset[key] || options.curr[key]) +
+                  options[i];
+              });
 
-            smoothScrollBy(dom, ...options) {
-
-                if ('scrollBehavior' in document.documentElement.style) {
-                    dom.scrollBy({
-                        behavior: 'smooth',
-                        left: options[0],
-                        right: options[1]
-                    });
-
-                } else {
-
-                    options.curr = { scrollLeft: dom.scrollLeft, scrollTop: dom.scrollTop };
-                    options.targ = {};
-                    options._time = performance.now();
-                    options.duration = 300;
-
-                    Object.keys(options.curr).forEach((key, i) => {
-                        options.targ[key] = parseFloat(dom.dataset[key] || options.curr[key]) + options[i];
-                    });
-
-                    this.smoothScrollBy_(dom, options);
-                }
+              this.smoothScrollBy_(dom, options);
             }
-        }
+          },
+        };
 
-    let M = { _target: null };
+      let M = { _target: null };
 
+      window.addEventListener(
+        "click",
+        function (e) {
+          UTILS.customEvent(e.target, "_click", e);
+        },
+        true
+      );
 
-    window.addEventListener('click', function(e) {
-        UTILS.customEvent(e.target, '_click', e);
-    }, true);
+      window.addEventListener(
+        "touchend",
+        function (e) {
+          if (e.touches.length || !e.cancelable) return;
 
-    window.addEventListener('touchend', function(e) {
-        if (e.touches.length || !e.cancelable)
-            return;
+          if (M._target === e.target && e.target.href) e.target.click();
 
-        if (M._target === e.target && e.target.href)
-            e.target.click();
+          M._target = null;
 
-        M._target = null;
+          e.preventDefault();
 
-        e.preventDefault();
+          UTILS.customEvent(e.target, "_click", e);
+        },
+        true
+      );
 
-        UTILS.customEvent(e.target, '_click', e);
-    }, true);
+      window.addEventListener(
+        "mousedown",
+        function (e) {
+          UTILS.customEvent(e.target, "_down", e);
+        },
+        true
+      );
 
-    window.addEventListener('mousedown', function(e) {
-        UTILS.customEvent(e.target, '_down', e);
-    }, true);
+      window.addEventListener(
+        "touchstart",
+        function (e) {
+          if (e.touches.length > 1) return e.preventDefault();
 
-    window.addEventListener('touchstart', function(e) {
-        if (e.touches.length > 1)
-            return e.preventDefault();
+          UTILS.customEvent(e.target, "_down", e);
+        },
+        { passive: false, useCapture: true }
+      );
 
-        UTILS.customEvent(e.target, '_down', e);
-    }, { passive: false , useCapture: true});
+      window.addEventListener(
+        "touchmove",
+        function (e) {
+          let ev = e.originalEvent || e;
+          if (ev.scale > 1 || e.touches.length > 1) return e.preventDefault();
+        },
+        { passive: false, useCapture: true }
+      );
 
-    window.addEventListener('touchmove', function(e) {
-        let ev = e.originalEvent || e;
-        if (ev.scale > 1 || e.touches.length > 1)
-            return e.preventDefault();
-        
-    }, { passive: false , useCapture: true});
+      window.addEventListener("load", function () {
+        window.addEventListener(
+          "_click",
+          function (e) {
+            document.body.classList.remove("lock");
+          },
+          true
+        );
 
-    window.addEventListener('load', function() {
+        window.addEventListener("_down", function (e) {
+          M._target = e.target;
 
-        window.addEventListener('_click', function(e) {
-
-            document.body.classList.remove('lock');
-        }, true);
-
-        window.addEventListener('_down', function(e) {
-
-            M._target = e.target;
-
-            if (UTILS.matchesParent(e.target, '.scroll')) {
-                UTILS.clearSelection();
-                document.body.classList.add('lock');
-            }
-            // document.body.classList.add('lock');
+          if (UTILS.matchesParent(e.target, ".scroll")) {
+            UTILS.clearSelection();
+            document.body.classList.add("lock");
+          }
+          // document.body.classList.add('lock');
         });
 
         checkScrollDisable();
-        window.addEventListener('resize', checkScrollDisable, true);
+        window.addEventListener("resize", checkScrollDisable, true);
 
-        document.querySelector('.carousel_container').addEventListener('scroll', e => {
-
+        document.querySelector(".carousel_container").addEventListener(
+          "scroll",
+          (e) => {
             checkScrollDisable();
+          },
+          true
+        );
+        document.querySelector(".carousel_container").addEventListener(
+          "_click",
+          function ({ detail: e }) {
+            if (!e.target.classList.contains("arrow")) return;
 
-        }, true);
-        document.querySelector('.carousel_container').addEventListener('_click', function({ detail: e }) {
+            moveToNext(
+              e.target.parentElement.classList.contains("right") ? 1 : -1
+            );
+          },
+          false
+        );
 
-            if (!e.target.classList.contains('arrow'))
-                return;
+        setTimeout(
+          changeState.bind(this, "writeTitle"),
+          Math.max(500 - performance.now() + TIME, 0)
+        );
+      });
 
-            moveToNext(e.target.parentElement.classList.contains('right') ? 1 : -1);
-
-        }, false);
-
-        setTimeout(changeState.bind(this, 'writeTitle'), Math.max(500 - performance.now() + TIME, 0));
-    });
-
-    function moveToNext(way) {
-        let carousel = document.querySelector('.carousel_container .carousel'),
-            elemWidth = carousel.firstElementChild.getBoundingClientRect().width,
-            amt = elemWidth * way;
+      function moveToNext(way) {
+        let carousel = document.querySelector(".carousel_container .carousel"),
+          elemWidth = carousel.firstElementChild.getBoundingClientRect().width,
+          amt = elemWidth * way;
 
         UTILS.smoothScrollBy(carousel, amt, 0);
-    }
+      }
 
-    function checkScrollDisable() {
+      function checkScrollDisable() {
+        let carousel_cont = document.querySelector(".carousel_container"),
+          carousel = carousel_cont.querySelector(".carousel"),
+          width = 1 / carousel.childElementCount,
+          scrollPos =
+            carousel.scrollLeft / (carousel.scrollWidth - carousel.clientWidth);
 
-        let carousel_cont = document.querySelector('.carousel_container'),
-            carousel = carousel_cont.querySelector('.carousel'),
-            width = 1 / carousel.childElementCount,
-            scrollPos = carousel.scrollLeft / (carousel.scrollWidth - carousel.clientWidth);
-
-        carousel_cont.dataset.disabled = '';
+        carousel_cont.dataset.disabled = "";
 
         if (scrollPos - width <= 0) {
-            carousel_cont.dataset.disabled += 'left';
+          carousel_cont.dataset.disabled += "left";
         }
 
         if (scrollPos + width >= 1) {
-            carousel_cont.dataset.disabled += 'right';
+          carousel_cont.dataset.disabled += "right";
         }
-    }
+      }
 
-    function changeState(state) {
-
-        if (STATES.indexOf(state) <= STATES.indexOf(CURRSTATE))
-            return;
+      function changeState(state) {
+        if (STATES.indexOf(state) <= STATES.indexOf(CURRSTATE)) return;
 
         CURRSTATE = state;
         METHODS[state]();
-    }
+      }
     </script>
-</body>
-
+  </body>
 </html>
