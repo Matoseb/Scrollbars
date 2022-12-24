@@ -1,5 +1,5 @@
 
-# Evolution of Scrollbars
+# Evolution of the Scrollbar
 
 Some iconic scrollbars recreated as faithfully as possible.\
 The interactive aspect has been particularly well looked after.
